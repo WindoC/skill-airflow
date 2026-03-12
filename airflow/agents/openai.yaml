@@ -1,0 +1,4 @@
+interface:
+  display_name: "Airflow API Operator"
+  short_description: "Operate Apache Airflow via REST API safely"
+  default_prompt: "Use $airflow to interact with https://airflow.example.com/api/v1 for DAG, DAG run, task, and variable operations."
