@@ -20,7 +20,7 @@ Important: Airflow authentication is backend-dependent at runtime. The spec list
 
 Current helper script support:
 
-- `airflow/scripts/airflow_api.py` supports **Basic Auth**.
+- `.agents/skills/airflow/scripts/airflow_api.py` supports **Basic Auth**.
 - Provide credentials using:
   - `AIRFLOW_USERNAME` and `AIRFLOW_PASSWORD` environment variables, or
   - `--username` with one of:
@@ -34,19 +34,19 @@ Example:
 ```bash
 $env:AIRFLOW_USERNAME="your_user"
 $env:AIRFLOW_PASSWORD="your_pass"
-uv run python airflow/scripts/airflow_api.py health
+uv run python .agents/skills/airflow/scripts/airflow_api.py health
 ```
 
 Interactive prompt example:
 
 ```bash
-uv run python airflow/scripts/airflow_api.py --username your_user --prompt-password health
+uv run python .agents/skills/airflow/scripts/airflow_api.py --username your_user --prompt-password health
 ```
 
 Stdin example:
 
 ```bash
-"your_pass" | uv run python airflow/scripts/airflow_api.py --username your_user --password-stdin health
+"your_pass" | uv run python .agents/skills/airflow/scripts/airflow_api.py --username your_user --password-stdin health
 ```
 
 `.env` example (project root):
@@ -60,7 +60,7 @@ AIRFLOW_PASSWORD=your_pass
 Then run:
 
 ```bash
-uv run python airflow/scripts/airflow_api.py health
+uv run python .agents/skills/airflow/scripts/airflow_api.py health
 ```
 
 Optional overrides:
@@ -71,17 +71,17 @@ Optional overrides:
 
 ## Repository Layout
 
-- `airflow/SKILL.md`: Skill instructions and workflow
-- `airflow/agents/openai.yaml`: UI metadata and default prompt
-- `airflow/references/`: Endpoint and request templates
-- `airflow/scripts/airflow_api.py`: Python helper CLI
+- `.agents/skills/airflow/SKILL.md`: Skill instructions and workflow
+- `.agents/skills/airflow/agents/openai.yaml`: UI metadata and default prompt
+- `.agents/skills/airflow/references/`: Endpoint and request templates
+- `.agents/skills/airflow/scripts/airflow_api.py`: Python helper CLI
 
 ## Python / uv
 
 Use `uv` for Python execution and dependency resolution.
 
 ```bash
-uv run python airflow/scripts/airflow_api.py --help
+uv run python .agents/skills/airflow/scripts/airflow_api.py --help
 ```
 
 Example validation:
@@ -107,17 +107,17 @@ uvx pre-commit run --all-files
 ## Quick Start
 
 1. Review API docs in `openapi.yaml` and `openapi.json`.
-2. Update skill content under `airflow/` if the API changes.
+2. Update skill content under `.agents/skills/airflow/` if the API changes.
 3. Validate the skill using `quick_validate.py`.
 
 ## DAG Run Commands
 
 - List DAG runs:
-  - `uv run python airflow/scripts/airflow_api.py list-dag-runs <dag_id> --limit 20 --offset 0`
+  - `uv run python .agents/skills/airflow/scripts/airflow_api.py list-dag-runs <dag_id> --limit 20 --offset 0`
 - Get one DAG run:
-  - `uv run python airflow/scripts/airflow_api.py get-dag-run <dag_id> <dag_run_id>`
+  - `uv run python .agents/skills/airflow/scripts/airflow_api.py get-dag-run <dag_id> <dag_run_id>`
 - Trigger a new DAG run (POST):
-  - `uv run python airflow/scripts/airflow_api.py post-dag-run <dag_id> --run-id manual__2026-03-11T10:00:00Z --conf '{"source":"cli"}'`
+  - `uv run python .agents/skills/airflow/scripts/airflow_api.py post-dag-run <dag_id> --run-id manual__2026-03-11T10:00:00Z --conf '{"source":"cli"}'`
 
 Backward-compatible alias:
 
